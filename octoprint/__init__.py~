@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+
+import wx
+from wx import xrc
+
+GUI_FILENAME = "bbp.xrc"
+GUI_MAINFRAME_NAME = "frame_1"
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.res = xrc.XmlResource(GUI_FILENAME)
+        
+        self.InitFrame()
+        self.frame.Show()
+        return True
+    
+    def InitFrame(self):
+        self.frame = self.res.LoadFrame(None, GUI_MAINFRAME_NAME)
+        self.label_bed = xrc.XRCCTRL(self.frame, "label_bed")
+        #self.label_bed.SetLabel("sdfsdf")
+        self.label_ext1 = xrc.XRCCTRL(self.frame, "label_ext1")
+        self.label_ext2 = xrc.XRCCTRL(self.frame, "label_ext2")
+        self.label_ext3 = xrc.XRCCTRL(self.frame, "label_ext3")       
+        self.combo_box_profile = xrc.XRCCTRL(self.frame, "combo_box_profile")
+        self.button_connect = xrc.XRCCTRL(self.frame, "button_connect")
+       
+        
+        #notebook_main
+        self.notebook_main = xrc.XRCCTRL(self.frame, "notebook_main")
+        self.notebook_main_print = xrc.XRCCTRL(self.notebook_main, "notebook_main_print")        
+        #print 
+        self.label_status = xrc.XRCCTRL(self.notebook_main_print, "label_status")
+        self.label_file = xrc.XRCCTRL(self.notebook_main_print, "label_file")
+        self.label_timelapse = xrc.XRCCTRL(self.notebook_main_print, "label_timelapse")
+        self.label_total_time = xrc.XRCCTRL(self.notebook_main_print, "label_total_time")
+        self.label_print_time = xrc.XRCCTRL(self.notebook_main_print, "label_print_time")
+        self.label_print_left = xrc.XRCCTRL(self.notebook_main_print, "label_print_left")        
+        self.button_print = xrc.XRCCTRL(self.notebook_main_print, "button_print")
+        self.button_pause = xrc.XRCCTRL(self.notebook_main_print, "button_pause")
+        #self.button_pause.SetLabel("sdfsdf")
+        self.button_cancel = xrc.XRCCTRL(self.notebook_main_print, "button_cancel")
+        
+        #notebook_files
+        self.notebook_files = xrc.XRCCTRL(self.notebook_main_print, "notebook_files")
+        self.notebook_files_local = xrc.XRCCTRL(self.notebook_files, "notebook_files_local")
+        self.notebook_files_sd = xrc.XRCCTRL(self.notebook_files, "notebook_files_sd")
+        
+        
+        print("lkjj 3")
+        #self.panel = xrc.XRCCTRL(self.frame, "notebook_2_pane_1")
+        #self.first_arg = xrc.XRCCTRL(self.panel, "FirstArg")
+        #self.second_arg = xrc.XRCCTRL(self.panel, "SecondArg")
+        #self.result = xrc.XRCCTRL(self.panel, "Result")
+        #self.first_arg.SetValue("Hi")
+        #self.second_arg.SetValue("You")
+        #self.result.SetValue("man")
+        
+if __name__ == "__main__":
+    app = MyApp()
+    app.MainLoop()
